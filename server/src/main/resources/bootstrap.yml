@@ -1,0 +1,30 @@
+server:
+  port: 9901
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+#    fetch-registry: true #同步注册中心的信息
+#    register-with-eureka: true #注册中心注册自己
+    serviceUrl:
+      defaultZone: http://@eureka.user.name@:@eureka.user.password@@localhost:9900/eureka/
+
+
+spring:
+  application:
+    name: server-service
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+
+#配置actuator/info 即eureka的status信息
+#“bootstrap.yml，${parameter}则是读取文件内部的变量值
+  #若想读取pom.xml文件的变量应该使用@parameter@”
+info:
+  app.name: shudaidai
+  company.name: www.shudaidai.com
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.version@"

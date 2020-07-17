@@ -1,0 +1,24 @@
+server:
+  port: 9900
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #     �����Ƿ��Լ�����Ϣע�ᵽ Eureka ��������
+    registerWithEureka: false
+    #     �Ƿ� Eureka ��������ץȡע����Ϣ
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://@eureka.user.name@:@eureka.user.password@@${eureka.instance.hostname}:${server.port}/eureka/
+
+
+spring:
+  application:
+    name: eurka-service
+  security:
+    user:
+#      eureka.user.name/eureka.user.password ������pom�ļ���
+      name: @eureka.user.name@
+      password: @eureka.user.password@
+
